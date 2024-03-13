@@ -1,20 +1,41 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { BASE_URL } from "../utils/apiConfig";
+import axios from "axios";
 
 const Register = () => {
   const [credentials, setCredentials] = useState({
+    userName: "",
     email: "",
     password: "",
   });
   const handleChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const url = `${BASE_URL}/api/user/register`;
+      const { data: res } = await axios.post(url, credentials);
+      console.log(res.message);
+    } catch (err) {
+      if (
+        err.response &&
+        err.response.status >= 300 &&
+        err.response.status <= 500
+      ) {
+        console.log(err.response.data.message);
+      }
+    }
+  };
+
   return (
     <>
       <div className="flex items-center justify-center min-h-screen bg-gray-100">
         <div className="relative flex flex-col m-6 space-y-8 bg-white shadow-2xl rounded-2xl md:flex-row md:space-y-0">
           <form
-            // onSubmit={handleSubmit}
+            onSubmit={handleSubmit}
             className="flex flex-col justify-center p-8 md:p-14"
           >
             <span className="mb-3 text-3xl font-bold">Create an Acoount!</span>
@@ -26,7 +47,7 @@ const Register = () => {
               <input
                 type="text"
                 className="w-full p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
-                name="username"
+                name="userName"
                 id="username"
                 onChange={handleChange}
                 // value={credentials.username}

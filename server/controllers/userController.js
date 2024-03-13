@@ -36,13 +36,14 @@ const login = async (req, res) => {
     }
     const token = jwt.sign(
       {
-        _id: this._id,
-        userName: this.userName,
-        email: this.email,
+        _id: user._id,
+        userName: user.userName,
+        email: user.email,
       },
       process.env.JWTPRIVATEKEY,
       { expiresIn: "2d" }
     );
+    const { password, ...info } = user._doc;
     res
       .status(200)
       .cookie("authToken", token, {
@@ -59,7 +60,7 @@ const login = async (req, res) => {
 
 const logout = async (req, res) => {
   res
-    .clearCookie("accessToken", {
+    .clearCookie("authToken", {
       sameSite: "none",
       secure: true,
     })

@@ -1,5 +1,8 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { BASE_URL } from "../utils/apiConfig";
+import axios from "axios";
+import { AuthContext } from "../context/AuthContext";
 
 const Login = () => {
   const [credentials, setCredentials] = useState({
@@ -7,15 +10,45 @@ const Login = () => {
     password: "",
   });
 
+  const { loading, dispatch } = useContext(AuthContext);
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const url = `${BASE_URL}/api/user/login`;
+      const response = await axios.post(url, credentials, {
+        withCredentials: true, // Set withCredentials to true
+      });
+      // const data = await response.json();
+
+      if (response.status == 200) {
+        dispatch({ type: "LOGIN", payload: response });
+
+        console.log("login success");
+        navigate("/home");
+      }
+    } catch (error) {
+      if (
+        error.response &&
+        error.response.status >= 400 &&
+        error.response.status <= 500
+      ) {
+        console.log(error.response.data.message);
+      }
+    }
+  };
+
   return (
     <>
       <div className="flex items-center justify-center min-h-screen bg-gray-100">
         <div className="relative flex flex-col m-6 space-y-8 bg-white shadow-2xl rounded-2xl md:flex-row md:space-y-0">
           <form
-            // onSubmit={handleSubmit}
+            onSubmit={handleSubmit}
             className="flex flex-col justify-center p-8 md:p-14"
           >
             <span className="mb-3 text-3xl font-bold">Login</span>
@@ -44,7 +77,6 @@ const Login = () => {
             </div>
 
             <button
-              //   disabled={loading}
               type="submit"
               className="w-full bg-black text-white p-2 rounded-lg mb-6 hover:bg-[#171717] hover:text-white "
             >

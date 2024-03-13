@@ -1,11 +1,43 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { LogOut, Map, UserCog } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
+import axios from "axios";
+import { BASE_URL } from "../utils/apiConfig";
 
 const SearchBar = () => {
+  const navigate = useNavigate();
+  const { isAuthenticated, dispatch } = useContext(AuthContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const handleMenuToggler = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  const handleLogOut = async (e) => {
+    e.preventDefault();
+    try {
+      const url = `${BASE_URL}/api/user/logout`;
+      const response = await axios.post(url, {
+        withCredentials: true, // Set withCredentials to true
+      });
+
+      if (response.status == 200) {
+        dispatch({ type: "LOGOUT", payload: response });
+
+        console.log("logout success");
+        navigate("/login");
+      }
+    } catch (error) {
+      if (
+        error.response &&
+        error.response.status >= 400 &&
+        error.response.status <= 500
+      ) {
+        console.log(error.response.data.message);
+      }
+    }
+  };
+
   return (
     <div>
       <div>
@@ -59,7 +91,7 @@ const SearchBar = () => {
                   </a>
 
                   <button
-                    type="submit"
+                    onClick={handleLogOut}
                     className="flex w-full items-center gap-2 rounded-lg px-4 py-2 text-sm text-red-700 hover:bg-red-50"
                     role="menuitem"
                   >
