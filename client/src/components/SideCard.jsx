@@ -19,6 +19,7 @@ const SideCard = () => {
   const [location, setLocation] = useState(null);
   const { weatherData, setWeatherData } = useContext(WeatherContext);
 
+  // Access current Location and update weather
   const handleLocationClick = async () => {
     try {
       if (navigator.geolocation) {
@@ -43,6 +44,7 @@ const SideCard = () => {
     const lon = position.coords.longitude;
     setLocation({ lat, lon });
     console.log(`Latitude: ${lat}, Longitude: ${lon}`);
+    console.log(weatherData);
 
     try {
       const response = await axios.get(
@@ -56,7 +58,7 @@ const SideCard = () => {
     }
   };
 
-  // Function to get weather icon based on description
+  // Get weather icon based on Description
   const getWeatherIcon = (description) => {
     switch (description) {
       case "clear sky":
@@ -86,7 +88,7 @@ const SideCard = () => {
   let temp = "00.00";
   const { day, date } = getFormattedDayAndDate();
 
-  // Function to get formatted day and date
+  // Formatted day and date
   function getFormattedDayAndDate() {
     const options = {
       weekday: "long",
@@ -101,7 +103,7 @@ const SideCard = () => {
     };
   }
 
-  // Function to get weather description based on temperature
+  // Weather description based on temperature
   function getWeatherDescription(temp) {
     if (temp < -10) {
       return "Brrr! It's freezing cold out there!";
@@ -128,7 +130,7 @@ const SideCard = () => {
   }
   const description = getWeatherDescription(temp);
 
-  // Set the weather icon based on weather description
+  // Weather icon based on weather description
   let weatherIcon = null;
   if (
     weatherData &&
@@ -137,7 +139,7 @@ const SideCard = () => {
   ) {
     weatherIcon = getWeatherIcon(weatherData.weather[0].description);
   }
-
+  console.log(weatherData);
   return (
     <div className="flex w-full md:w-1/3">
       <div
