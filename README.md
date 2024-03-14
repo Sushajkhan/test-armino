@@ -69,6 +69,12 @@ JWTPRIVATEKEY=
 MONGO_URL=
 ```
 
+Create a `.env` file in the `client` folder with the following content:
+
+```env
+VITE_API_KEY= openweather api key
+```
+
 # Dependencies(tech-stacks)
 
 | Client-side                 | Server-side            |
