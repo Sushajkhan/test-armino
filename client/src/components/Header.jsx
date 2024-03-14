@@ -3,11 +3,12 @@ import { LogOut, Map, UserCog } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
-import { BASE_URL } from "../utils/apiConfig";
+import { API_KEY, BASE_API_URL, BASE_URL } from "../utils/apiConfig";
+import WeatherContext from "../context/WeatherContext";
 
-const SearchBar = () => {
+const Header = ({ handleWeatherData }) => {
   const navigate = useNavigate();
-  const { isAuthenticated, dispatch } = useContext(AuthContext);
+  const { isAuthenticated, user, dispatch } = useContext(AuthContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const handleMenuToggler = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -35,6 +36,23 @@ const SearchBar = () => {
       ) {
         console.log(error.response.data.message);
       }
+    }
+  };
+  const [query, setQuery] = useState("");
+  const { weatherData, setWeatherData } = useContext(WeatherContext);
+
+  const handleWeatherSearch = async (e) => {
+    e.preventDefault();
+    try {
+      const city = query;
+      const response = await fetch(
+        `${BASE_API_URL}?q=${city}&appid=${API_KEY}`
+      );
+      const result = await response.json();
+      setWeatherData(result);
+      console.log(weatherData);
+    } catch (error) {
+      console.error("Error fetching weather data:", error);
     }
   };
 
@@ -101,12 +119,15 @@ const SearchBar = () => {
                 </div>
               </div>
             </div>
-
-            <input
-              className="font-bold uppercase rounded-full w-full ml-10 py-4 pl-4 text-gray-700 bg-gray-100 leading-tight focus:outline-none focus:shadow-outline lg:text-sm text-xs sm:ml-10 md:ml-10"
-              type="text"
-              placeholder="Search"
-            />
+            <form action="" onSubmit={handleWeatherSearch}>
+              <input
+                onChange={(e) => setQuery(e.target.value)}
+                className="font-bold uppercase rounded-full w-full ml-10 py-4 pl-4 text-gray-700 bg-gray-100 leading-tight focus:outline-none focus:shadow-outline lg:text-sm text-xs sm:ml-10 md:ml-10"
+                type="text"
+                placeholder="Search"
+                value={query}
+              />
+            </form>
 
             <div className="bg-black p-2 hover:bg-[#171717] cursor-pointer mx-2 rounded-full">
               <svg
@@ -129,4 +150,4 @@ const SearchBar = () => {
   );
 };
 
-export default SearchBar;
+export default Header;

@@ -7,7 +7,7 @@ const verifyToken = (req, res, next) => {
       .status(401)
       .sen({ message: "Authentication required. Please log in." });
 
-  jwt.verify(token, process.env.JWT_KEY, async (err, payload) => {
+  jwt.verify(token, process.env.JWTPRIVATEKEY, async (err, payload) => {
     if (err) return res.status(403).message({ error: "Token is not valid!" });
 
     next();

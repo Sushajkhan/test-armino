@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
+import WeatherContext from "../context/WeatherContext";
 
-const Forecast = () => {
+const LargeCard = () => {
+  const { weatherData } = useContext(WeatherContext);
+
   return (
     <div>
-      <div className="flex flex-col space-y-6 w-full text-white  bg-black p-10 mt-10 rounded-xl ring-8 ring-white ring-opacity-40">
+      <div className="flex flex-col space-y-6 w-full text-white  bg-black p-10 mt-10 rounded-xl  ">
         <div className="flex justify-between items-center">
           <span className="font-semibold text-lg w-1/4">Fri, 22 Jan</span>
           <div className="flex items-center justify-end w-1/4 pr-10">
@@ -122,8 +125,8 @@ const Forecast = () => {
         </div>
         <div className="flex justify-between items-center">
           <span className="font-semibold text-lg w-1/4">Tue, 26 Jan</span>
-          <div className="flex items-center justify-center w-1/4">
-            <span className="font-semibold">80%</span>
+          <div className="flex items-center justify-end pr-10 w-1/4">
+            <span className="font-semibold">50%</span>
             <svg
               className="w-6 h-6 fill-current ml-1"
               viewBox="0 0 16 20"
@@ -154,4 +157,4 @@ const Forecast = () => {
   );
 };
 
-export default Forecast;
+export default LargeCard;

@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import WeatherHome from "./pages/WeatherHome";
 import NotFound from "./pages/NotFound";
+import Home from "./pages/Home";
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/404" element={<NotFound />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/home" element={<WeatherHome />} />
+          <Route path="/home" element={<Home />} />
         </Routes>
       </BrowserRouter>
     </>
