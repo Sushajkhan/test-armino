@@ -97,7 +97,8 @@ MONGO_URL=
 
 # Screenshots of this project
 
-(http://i.imgur.com/mn1jUjA.png)
+![Login](http://i.imgur.com/i0BBTFV.png)
+![Homepage](http://i.imgur.com/mn1jUjA.png)
 
 ## Standard
 
