@@ -52,7 +52,7 @@ const login = async (req, res) => {
         secure: true,
         expires: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000),
       })
-      .send({ message: "Login successful", status: 200 });
+      .send(info);
   } catch (error) {
     return res.status(500).send({ message: error.message });
   }

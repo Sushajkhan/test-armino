@@ -1,10 +1,9 @@
-import { createContext, useReducer } from "react";
+import { createContext, useEffect, useReducer } from "react";
 
 const INITIAL_STATE = {
   user: JSON.parse(localStorage.getItem("user")) || null,
   loading: false,
   error: null,
-  isAuthenticated: false,
 };
 
 export const AuthContext = createContext(INITIAL_STATE);
@@ -16,15 +15,17 @@ const authReducer = (state, action) => {
         user: action.payload,
         loading: false,
         error: null,
-        isAuthenticated: true,
       };
 
     case "LOGOUT":
+      document.cookie =
+        "authToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+
+      localStorage.removeItem("user");
       return {
         user: null,
         loading: false,
         error: null,
-        isAuthenticated: false,
       };
     default:
       return state;
@@ -33,6 +34,10 @@ const authReducer = (state, action) => {
 
 export const AuthContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, INITIAL_STATE);
+
+  useEffect(() => {
+    localStorage.setItem("user", JSON.stringify(state.user));
+  }, [state.user]);
 
   return (
     <AuthContext.Provider value={{ ...state, dispatch }}>

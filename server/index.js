@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 require("dotenv").config();
 const userRoute = require("./routes/userRoute");
+const locationRoute = require("./routes/locationRoute");
 
 const app = express();
 const port = process.env.PORT || 7000;
@@ -30,7 +31,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors(corsOptions));
 app.use("/api/user", userRoute);
-app.use("/api/user/location", userRoute);
+app.use("/api/user/location", locationRoute);
 
 app.listen(port, () => {
   connectDB();

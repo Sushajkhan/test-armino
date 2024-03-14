@@ -12,10 +12,12 @@ import {
   WiFog,
   WiNightAltSnow,
 } from "weather-icons-react";
-import { API_KEY, BASE_API_URL } from "../utils/apiConfig";
+import { API_KEY, BASE_API_URL, BASE_URL } from "../utils/apiConfig";
 import axios from "axios";
+import { AuthContext } from "../context/AuthContext";
 
 const SideCard = () => {
+  const { user } = useContext(AuthContext);
   const [location, setLocation] = useState(null);
   const { weatherData, setWeatherData } = useContext(WeatherContext);
 
@@ -139,31 +141,35 @@ const SideCard = () => {
   ) {
     weatherIcon = getWeatherIcon(weatherData.weather[0].description);
   }
-  console.log(weatherData);
 
+  let city = undefined;
+  let userId = undefined;
+
+  if (weatherData?.name) {
+    city = weatherData.name;
+  }
+  if (user?.data?._id) {
+    userId = user?.data?._id;
+  }
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(userId);
+
     try {
       const url = `${BASE_URL}/api/user/location/save`;
-      const response = await axios.post(url, credentials, {
-        withCredentials: true, // Set withCredentials to true
-      });
-      // const data = await response.json();
+      const response = await axios.post(
+        url,
+        { city, userId },
+        {
+          withCredentials: true, // Set withCredentials to true
+        }
+      );
 
-      if (response.status == 200) {
-        dispatch({ type: "LOGIN", payload: response });
-
-        console.log("login success");
-        navigate("/home");
+      if (response.status == 201) {
+        console.log("location saved ");
       }
     } catch (error) {
-      if (
-        error.response &&
-        error.response.status >= 400 &&
-        error.response.status <= 500
-      ) {
-        console.log(error.response.data.message);
-      }
+      console.log(error);
     }
   };
   return (
@@ -207,7 +213,10 @@ const SideCard = () => {
             <div className="mt-20 flex w-full justify-center text-sm text-blue-50">
               <p className="text-lg font-mono">{description}</p>
             </div>
-            <button className="mt-20 group relative rounded-2xl inline-flex items-center overflow-hidden bg-white px-8 py-3 text-black focus:outline-none active:bg-gray-800 active:text-white w-[210px]">
+            <button
+              onClick={handleSubmit}
+              className="mt-20 group relative rounded-2xl inline-flex items-center overflow-hidden bg-white px-8 py-3 text-black focus:outline-none active:bg-gray-800 active:text-white w-[210px]"
+            >
               <span className="absolute -start-full transition-all group-hover:start-4">
                 <Pin />
               </span>

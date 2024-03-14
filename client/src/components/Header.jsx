@@ -60,23 +60,15 @@ const Header = ({ handleWeatherData }) => {
     <div>
       <div className="flex flex-col p-2 py-6 m-h-screen">
         <div className="bg-white items-center justify-between w-full flex rounded-full shadow-lg p-2 mb-5 sticky">
-          <div>
-            <div
-              className="flex items-center gap-x-2 cursor-pointer"
-              onClick={handleMenuToggler}
-            >
-              <img
-                className="object-cover w-10 h-10 rounded-full"
-                src="https://st.depositphotos.com/11576988/52897/v/450/depositphotos_528971950-stock-illustration-male-silhouette-person-black-symbol.jpg"
-                alt=""
-              />
-
-              <div className="w-full">
-                <h1 className="text-base  text-black capitalize w-full ">
-                  Sushajkhan
-                </h1>
-              </div>
-            </div>
+          <div
+            className=" cursor-pointer  border-black border-2 rounded-[100px]"
+            onClick={handleMenuToggler}
+          >
+            <img
+              className="object-cover w-10 h-10 rounded-full "
+              src="https://st.depositphotos.com/11576988/52897/v/450/depositphotos_528971950-stock-illustration-male-silhouette-person-black-symbol.jpg"
+              alt=""
+            />
           </div>
 
           <div
@@ -89,15 +81,6 @@ const Header = ({ handleWeatherData }) => {
               role="menu"
             >
               <div className="p-2">
-                <a
-                  href="#"
-                  className="flex w-full gap-2 rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
-                  role="menuitem"
-                >
-                  <UserCog />
-                  Profile
-                </a>
-
                 <a
                   href="#"
                   className="flex w-full gap-2 rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"

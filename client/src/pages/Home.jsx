@@ -9,28 +9,28 @@ import SmallCard2 from "../components/SmallCard2";
 import SmallCard3 from "../components/SmallCard3";
 
 const Home = () => {
-  const { isAuthenticated } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   return (
     <>
-      {/* {isAuthenticated ? ( */}
-      <div className="flex flex-col min-h-screen bg-gray-100 ">
-        <Header />
-        <div className="flex flex-col lg:flex-row gap-10 justify-center flex-grow px-10 ">
-          <SideCard className="lg:w-1/3 w-full" />
-          <div className="flex flex-col justify-center lg:w-2/3 w-full gap-10">
-            <div className="flex flex-col lg:flex-row gap-20 justify-center  ">
-              <SmallCard />
-              <SmallCard2 />
-              <SmallCard3 />
+      {user ? (
+        <div className="flex flex-col min-h-screen bg-gray-100 ">
+          <Header username />
+          <div className="flex flex-col lg:flex-row gap-10 justify-center flex-grow px-10 ">
+            <SideCard className="lg:w-1/3 w-full" />
+            <div className="flex flex-col justify-center lg:w-2/3 w-full gap-10">
+              <div className="flex flex-col lg:flex-row gap-20   ">
+                <SmallCard />
+                <SmallCard2 />
+                <SmallCard3 />
+              </div>
+              <LargeCard />
             </div>
-            <LargeCard />
           </div>
         </div>
-      </div>
-      {/* ) : (
+      ) : (
         <NotFound />
-      )} */}
+      )}
     </>
   );
 };
