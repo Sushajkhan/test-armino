@@ -82,6 +82,19 @@ MONGO_URL=
 | react-router-dom: ^4.2.2    | mongoose: ^8.2.1       |
 | sonner: ^1.4.3              |                        |
 
+## Features
+
+- Responsive app UI.
+- Login & Signup.
+- Find weather details of the current location.
+- Search weather deatils of a specific location.
+- Weather Details include temperature,weather description,and icon icon representing weather condition.
+- Bookmark locations and see the weather details of bookmarked locations.
+
+## Upcoming implementation
+
+- Using Nodemailer and cron scheduler send weather details of saved locations as email for evryday for a certain time.
+
 # Screenshots of this project
 
 (https://drive.google.com/file/d/1YKXBYFcAhQaycACSlUVMfDDyxA0wA-iN/view?usp=drive_link)
