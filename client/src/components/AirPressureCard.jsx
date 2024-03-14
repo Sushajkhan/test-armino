@@ -1,12 +1,13 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import WeatherContext from "../context/WeatherContext";
 
-const SmallCard3 = () => {
+const AirPressureCard = () => {
   const { weatherData } = useContext(WeatherContext);
   let visibility = "0";
   if (weatherData && weatherData.visibility) {
     visibility = (weatherData.visibility * 0.000621371).toFixed(2);
   }
+
   return (
     <div>
       <div className="flex flex-col items-center p-8 rounded-xl w-full md:w-60 sm:w-60  sm:px-12 text-white bg-black">
@@ -21,4 +22,4 @@ const SmallCard3 = () => {
   );
 };
 
-export default SmallCard3;
+export default AirPressureCard;

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import WeatherContext from "../context/WeatherContext";
 
-const SmallCard2 = () => {
+const WindCard = () => {
   const { weatherData } = useContext(WeatherContext);
   let wind = "0";
   if (weatherData && weatherData.wind && weatherData.wind.speed) {
@@ -21,4 +21,4 @@ const SmallCard2 = () => {
   );
 };
 
-export default SmallCard2;
+export default WindCard;

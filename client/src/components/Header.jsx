@@ -39,6 +39,7 @@ const Header = ({ handleWeatherData }) => {
       }
     }
   };
+
   const [query, setQuery] = useState("");
   const { weatherData, setWeatherData } = useContext(WeatherContext);
 

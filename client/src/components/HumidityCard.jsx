@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import WeatherContext from "../context/WeatherContext";
 
-const SmallCard = () => {
+const HumidityCard = () => {
   const { weatherData } = useContext(WeatherContext);
   let humidity = "0";
   if (weatherData && weatherData.main && weatherData.main.humidity) {
@@ -19,4 +19,4 @@ const SmallCard = () => {
   );
 };
 
-export default SmallCard;
+export default HumidityCard;
