@@ -101,7 +101,7 @@ MONGO_URL=
 
 ![Homepage](http://i.imgur.com/mn1jUjA.png)
 
-![MobileView](http://i.imgur.com/undefined.png)
+![MobileView](https://i.imgur.com/n6OpIFA.png)
 
 ## Standard
 
