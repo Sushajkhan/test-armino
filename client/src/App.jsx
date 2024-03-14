@@ -3,6 +3,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
 import Home from "./pages/Home";
+import Bookmarks from "./pages/Bookmarks";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/404" element={<NotFound />} />
           <Route path="/register" element={<Register />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/bookmarks" element={<Bookmarks />} />
         </Routes>
       </BrowserRouter>
     </>

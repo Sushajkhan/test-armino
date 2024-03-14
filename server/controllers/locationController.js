@@ -31,8 +31,16 @@ const saveLocation = async (req, res) => {
 const deleteLocation = async (req, res) => {
   try {
     const { id } = req.params;
-    await Location.findByIdAndDelete(id);
-    res.status(204).send({ message: "Location Deleted" });
+    const deletedLocation = await Location.findByIdAndDelete(id);
+
+    if (!deletedLocation) {
+      return res.status(404).send({ message: "Location not found" });
+    }
+
+    // Remove the deleted location from all users' bookmarkedLocations
+    await User.updateMany({}, { $pull: { bookmarkedLocations: id } });
+
+    res.status(204).send({ message: "Location deleted" });
   } catch (error) {
     console.error("Error deleting location:", error);
     res.status(500).send({ error: "Failed to delete location" });

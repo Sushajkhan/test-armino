@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { LogOut, Map, UserCog } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
 import { API_KEY, BASE_API_URL, BASE_URL } from "../utils/apiConfig";
@@ -81,14 +81,15 @@ const Header = ({ handleWeatherData }) => {
               role="menu"
             >
               <div className="p-2">
-                <a
+                <Link
+                  to="/bookmarks"
                   href="#"
                   className="flex w-full gap-2 rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
                   role="menuitem"
                 >
                   <Map />
                   Saved Locations
-                </a>
+                </Link>
 
                 <button
                   onClick={handleLogOut}
