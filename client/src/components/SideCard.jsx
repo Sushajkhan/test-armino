@@ -15,6 +15,7 @@ import {
 import { API_KEY, BASE_API_URL, BASE_URL } from "../utils/apiConfig";
 import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
+import { toast } from "sonner";
 
 const SideCard = () => {
   const { user } = useContext(AuthContext);
@@ -166,10 +167,10 @@ const SideCard = () => {
       );
 
       if (response.status == 201) {
-        console.log("location saved ");
+        toast.success("location saved ");
       }
     } catch (error) {
-      console.log(error);
+      toast.error("error saving location");
     }
   };
   return (

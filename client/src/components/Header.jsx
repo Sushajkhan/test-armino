@@ -5,6 +5,7 @@ import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
 import { API_KEY, BASE_API_URL, BASE_URL } from "../utils/apiConfig";
 import WeatherContext from "../context/WeatherContext";
+import { toast } from "sonner";
 
 const Header = ({ handleWeatherData }) => {
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ const Header = ({ handleWeatherData }) => {
       if (response.status == 200) {
         dispatch({ type: "LOGOUT", payload: response });
 
-        console.log("logout success");
+        toast.success("logged out");
         navigate("/login");
       }
     } catch (error) {
@@ -34,7 +35,7 @@ const Header = ({ handleWeatherData }) => {
         error.response.status >= 400 &&
         error.response.status <= 500
       ) {
-        console.log(error.response.data.message);
+        toast.error(error.response.data.message);
       }
     }
   };

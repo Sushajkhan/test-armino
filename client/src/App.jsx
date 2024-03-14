@@ -4,6 +4,8 @@ import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
 import Home from "./pages/Home";
 import Bookmarks from "./pages/Bookmarks";
+import "./App.css";
+import { Toaster } from "sonner";
 
 function App() {
   return (
@@ -18,6 +20,7 @@ function App() {
           <Route path="/bookmarks" element={<Bookmarks />} />
         </Routes>
       </BrowserRouter>
+      <Toaster richColors />
     </>
   );
 }

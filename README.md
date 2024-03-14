@@ -80,8 +80,11 @@ MONGO_URL=
 | react-dom: ^18.2.0          | express: ^4.18.3"      |
 | weather-icons-react :^1.2.0 | jsonwebtoken": "^9.0.2 |
 | react-router-dom: ^4.2.2    | mongoose: ^8.2.1       |
+| sonner: ^1.4.3              |                        |
 
 # Screenshots of this project
+
+(https://drive.google.com/file/d/1YKXBYFcAhQaycACSlUVMfDDyxA0wA-iN/view?usp=drive_link)
 
 ## Standard
 

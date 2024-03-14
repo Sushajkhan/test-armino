@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BASE_URL } from "../utils/apiConfig";
 import axios from "axios";
+import { toast } from "sonner";
 
 const Register = () => {
   const [credentials, setCredentials] = useState({
@@ -9,6 +10,8 @@ const Register = () => {
     email: "",
     password: "",
   });
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
@@ -18,7 +21,8 @@ const Register = () => {
     try {
       const url = `${BASE_URL}/api/user/register`;
       const { data: res } = await axios.post(url, credentials);
-      console.log(res.message);
+      toast.success("Registration Success,Please Login");
+      navigate("/login");
     } catch (err) {
       if (
         err.response &&

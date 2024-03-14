@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { BASE_URL } from "../utils/apiConfig";
 import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
+import { toast } from "sonner";
 
 const Login = () => {
   const [credentials, setCredentials] = useState({
@@ -29,7 +30,8 @@ const Login = () => {
       if (response.status == 200) {
         dispatch({ type: "LOGIN", payload: response });
 
-        console.log("login success");
+        toast.success("Welcome");
+
         navigate("/home");
       }
     } catch (error) {
@@ -38,7 +40,7 @@ const Login = () => {
         error.response.status >= 400 &&
         error.response.status <= 500
       ) {
-        console.log(error.response.data.message);
+        toast.error(error.response.data.message);
       }
     }
   };
