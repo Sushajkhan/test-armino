@@ -28,9 +28,10 @@ $ yarn # or npm i
 ```terminal
 server/
    package.json
-   .env (to create .env, check [prepare your secret session])
+   .env (to create .env )
 client/
    package.json
+   .env (to create .env )
 ...
 ```
 
