@@ -97,7 +97,7 @@ MONGO_URL=
 
 # Screenshots of this project
 
-(https://drive.google.com/file/d/1YKXBYFcAhQaycACSlUVMfDDyxA0wA-iN/view?usp=drive_link)
+(https://imgur.com/mn1jUjA)
 
 ## Standard
 
@@ -111,4 +111,4 @@ Email Me: sushajkhan@gmail.com (welcome, say hi)
 
 ### License
 
-[MIT](https://github.com/amazingandyyy/mern/blob/master/LICENSE)
+[MIT](https://github.com/sushajkhan)
