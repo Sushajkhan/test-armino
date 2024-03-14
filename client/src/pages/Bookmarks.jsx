@@ -76,9 +76,9 @@ const Bookmarks = () => {
         </button>
         <h1 className="">Bookmarked Locations</h1>
       </div>
-      <div className="flex gap-10 justify-center">
+      <div className="flex gap-10 justify-center flex-wrap">
         {bookmarkedLocations.map((location) => (
-          <div key={location._id}>
+          <div key={location._id} onClick={() => handleClick(location)}>
             <div className="max-w-md p-8 mx-auto rounded-lg bg-black text-white ">
               <div className="flex justify-between space-x-8">
                 <div className="flex flex-col items-center">
