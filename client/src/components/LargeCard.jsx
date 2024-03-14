@@ -6,7 +6,7 @@ const LargeCard = () => {
 
   return (
     <div>
-      <div className="flex flex-col space-y-6 w-full text-white  bg-black p-10 mt-10 rounded-xl  ">
+      <div className="flex flex-col space-y-6 w-full text-white  bg-black p-10 mt-10  mb-10 rounded-2xl  ">
         <div className="flex justify-between items-center">
           <span className="font-semibold text-lg w-1/4">Fri, 22 Jan</span>
           <div className="flex items-center justify-end w-1/4 pr-10">

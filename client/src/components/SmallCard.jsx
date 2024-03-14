@@ -9,7 +9,7 @@ const SmallCard = () => {
   }
   return (
     <div>
-      <div className="flex flex-col items-center p-8 rounded-lg w-60 sm:px-12 text-white bg-black">
+      <div className="flex flex-col items-center p-8 rounded-xl w-full md:w-60 sm:w-60 sm:px-12 text-white bg-black">
         <div className="text-center">
           <h2 className="text-xl font-semibold mb-10">Humidity</h2>
           <h1 className="text-6xl ">{humidity} %</h1>

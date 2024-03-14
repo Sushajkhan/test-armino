@@ -140,13 +140,39 @@ const SideCard = () => {
     weatherIcon = getWeatherIcon(weatherData.weather[0].description);
   }
   console.log(weatherData);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const url = `${BASE_URL}/api/user/location/save`;
+      const response = await axios.post(url, credentials, {
+        withCredentials: true, // Set withCredentials to true
+      });
+      // const data = await response.json();
+
+      if (response.status == 200) {
+        dispatch({ type: "LOGIN", payload: response });
+
+        console.log("login success");
+        navigate("/home");
+      }
+    } catch (error) {
+      if (
+        error.response &&
+        error.response.status >= 400 &&
+        error.response.status <= 500
+      ) {
+        console.log(error.response.data.message);
+      }
+    }
+  };
   return (
-    <div className="flex w-full md:w-1/3">
+    <div className="flex w-full md:w-1/3 h-screen">
       <div
-        className="h-screen flex flex-col items-center w-full overflow-hidden rounded-3xl bg-black p-6"
+        className="h-full flex flex-col items-center w-full overflow-hidden rounded-3xl bg-black p-6"
         id="widget"
       >
-        <div className="w-max-content h-96 rounded-full">
+        <div className="w-max-content h-full rounded-full">
           <div className="w-full flex flex-col justify-center items-center">
             <div className="flex w-full justify-between text-sm text-blue-50 gap-20">
               <div className="flex gap-2 font-semibold">{day}</div>
@@ -163,7 +189,7 @@ const SideCard = () => {
             </button>
             <div className="flex w-full justify-center mt-2">
               {weatherIcon && (
-                <div className="mr-16 transform  w-32 duration-200 hover:scale-105 text-white ">
+                <div className="mr-16 transform w-32 duration-200 hover:scale-105 text-white">
                   <div className="text-[200px]">{weatherIcon}</div>
                 </div>
               )}

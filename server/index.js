@@ -30,6 +30,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors(corsOptions));
 app.use("/api/user", userRoute);
+app.use("/api/user/location", userRoute);
 
 app.listen(port, () => {
   connectDB();

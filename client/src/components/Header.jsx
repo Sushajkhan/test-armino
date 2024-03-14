@@ -58,91 +58,93 @@ const Header = ({ handleWeatherData }) => {
 
   return (
     <div>
-      <div>
-        <div className="flex flex-col p-2 py-6 m-h-screen">
-          <div className="bg-white items-center justify-between w-full flex rounded-full shadow-lg p-2 mb-5 sticky">
-            <div>
-              <div
-                className="flex items-center gap-x-2 cursor-pointer"
-                onClick={handleMenuToggler}
-              >
-                <img
-                  className="object-cover w-10 h-10 rounded-full"
-                  src="https://st.depositphotos.com/11576988/52897/v/450/depositphotos_528971950-stock-illustration-male-silhouette-person-black-symbol.jpg"
-                  alt=""
-                />
-
-                <div className="w-full">
-                  <h1 className="text-base  text-black capitalize w-full ">
-                    Sushajkhan
-                  </h1>
-                </div>
-              </div>
-            </div>
-
+      <div className="flex flex-col p-2 py-6 m-h-screen">
+        <div className="bg-white items-center justify-between w-full flex rounded-full shadow-lg p-2 mb-5 sticky">
+          <div>
             <div
-              className={` rounded-sm bg-background ${
-                isMenuOpen ? "" : "hidden"
-              }`}
+              className="flex items-center gap-x-2 cursor-pointer"
+              onClick={handleMenuToggler}
             >
-              <div
-                className="absolute start-0 z-20 mt-10 w-56 rounded-lg border border-gray-100 bg-white shadow-lg"
-                role="menu"
-              >
-                <div className="p-2">
-                  <a
-                    href="#"
-                    className="flex w-full gap-2 rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
-                    role="menuitem"
-                  >
-                    <UserCog />
-                    Profile
-                  </a>
+              <img
+                className="object-cover w-10 h-10 rounded-full"
+                src="https://st.depositphotos.com/11576988/52897/v/450/depositphotos_528971950-stock-illustration-male-silhouette-person-black-symbol.jpg"
+                alt=""
+              />
 
-                  <a
-                    href="#"
-                    className="flex w-full gap-2 rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
-                    role="menuitem"
-                  >
-                    <Map />
-                    Saved Locations
-                  </a>
-
-                  <button
-                    onClick={handleLogOut}
-                    className="flex w-full items-center gap-2 rounded-lg px-4 py-2 text-sm text-red-700 hover:bg-red-50"
-                    role="menuitem"
-                  >
-                    <LogOut />
-                    Logout
-                  </button>
-                </div>
+              <div className="w-full">
+                <h1 className="text-base  text-black capitalize w-full ">
+                  Sushajkhan
+                </h1>
               </div>
             </div>
-            <form action="" onSubmit={handleWeatherSearch}>
-              <input
-                onChange={(e) => setQuery(e.target.value)}
-                className="font-bold uppercase rounded-full w-full ml-10 py-4 pl-4 text-gray-700 bg-gray-100 leading-tight focus:outline-none focus:shadow-outline lg:text-sm text-xs sm:ml-10 md:ml-10"
-                type="text"
-                placeholder="Search"
-                value={query}
-              />
-            </form>
+          </div>
 
-            <div className="bg-black p-2 hover:bg-[#171717] cursor-pointer mx-2 rounded-full">
-              <svg
-                className="w-6 h-6 text-white"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                  clipRule="evenodd"
-                />
-              </svg>
+          <div
+            className={` rounded-sm bg-background ${
+              isMenuOpen ? "" : "hidden"
+            }`}
+          >
+            <div
+              className="absolute start-0 z-20 mt-10 w-56 rounded-lg border border-gray-100 bg-white shadow-lg"
+              role="menu"
+            >
+              <div className="p-2">
+                <a
+                  href="#"
+                  className="flex w-full gap-2 rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                  role="menuitem"
+                >
+                  <UserCog />
+                  Profile
+                </a>
+
+                <a
+                  href="#"
+                  className="flex w-full gap-2 rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                  role="menuitem"
+                >
+                  <Map />
+                  Saved Locations
+                </a>
+
+                <button
+                  onClick={handleLogOut}
+                  className="flex w-full items-center gap-2 rounded-lg px-4 py-2 text-sm text-red-700 hover:bg-red-50"
+                  role="menuitem"
+                >
+                  <LogOut />
+                  Logout
+                </button>
+              </div>
             </div>
+          </div>
+          <form
+            action=""
+            className=" rounded-full w-full  leading-tight focus:outline-none focus:shadow-outline lg:text-sm text-xs sm:ml-10 md:ml-10"
+            onSubmit={handleWeatherSearch}
+          >
+            <input
+              onChange={(e) => setQuery(e.target.value)}
+              className="  rounded-full w-full ml-10 py-4 pl-4 text-gray-700 bg-gray-100 leading-tight focus:outline-none focus:shadow-outline lg:text-sm text-xs sm:ml-10 md:ml-10"
+              type="text"
+              placeholder="Search"
+              value={query}
+            />
+          </form>
+
+          <div className="bg-black p-2 hover:bg-[#171717] cursor-pointer mx-2 rounded-full">
+            <svg
+              className="w-6 h-6 text-white"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fillRule="evenodd"
+                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                clipRule="evenodd"
+              />
+            </svg>
           </div>
         </div>
       </div>
